@@ -114,7 +114,7 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
     return (
         <div className="min-h-screen py-12">
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-bold mb-2 text-center text-teal-800">Longevity Jobs</h1>
+                <h1 className="text-5xl font-bold mb-2 text-center text-teal-800">Longevity Jobs</h1>
                 <p className="text-xl text-center mb-8 text-teal-600">Discover opportunities related to aging</p>
 
                 <div className="mb-8 space-y-4">
@@ -129,7 +129,7 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
                                         : `${selectedLocations.length} locations`}
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56">
+                            <DropdownMenuContent className="w-56 max-h-[300px] overflow-y-auto">
                                 <DropdownMenuLabel>Locations</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 {locations.map((location) => (
@@ -273,46 +273,34 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
                 {totalPages > 1 && (
                     <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
                         <Button
+                            key="prev"
                             variant="outline"
                             size="sm"
-                            onClick={() => handlePageChange(currentPage - 1)}
+                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
                         >
-                            <ChevronLeftIcon className="h-4 w-4" />
+                            Previous
                         </Button>
 
-                        {Array.from({ length: totalPages }, (_, i) => i + 1)
-                            .filter(page => {
-                                // Always show first and last page
-                                if (page === 1 || page === totalPages) return true;
-                                // Show 2 pages before and after current page on desktop, 1 on mobile
-                                const range = window.innerWidth >= 640 ? 2 : 1;
-                                return Math.abs(currentPage - page) <= range;
-                            })
-                            .map((page, index, array) => (
-                                <>
-                                    {index > 0 && array[index - 1] !== page - 1 && (
-                                        <span className="px-2">...</span>
-                                    )}
-                                    <Button
-                                        key={page}
-                                        variant={currentPage === page ? "default" : "outline"}
-                                        size="sm"
-                                        onClick={() => handlePageChange(page)}
-                                        className="w-8 px-0"
-                                    >
-                                        {page}
-                                    </Button>
-                                </>
-                            ))}
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                            <Button
+                                key={`page-${pageNum}`}
+                                variant={currentPage === pageNum ? "default" : "outline"}
+                                size="sm"
+                                onClick={() => setCurrentPage(pageNum)}
+                            >
+                                {pageNum}
+                            </Button>
+                        ))}
 
                         <Button
+                            key="next"
                             variant="outline"
                             size="sm"
-                            onClick={() => handlePageChange(currentPage + 1)}
+                            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
                         >
-                            <ChevronRightIcon className="h-4 w-4" />
+                            Next
                         </Button>
                     </div>
                 )}
