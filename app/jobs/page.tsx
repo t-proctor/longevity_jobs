@@ -1,6 +1,8 @@
 import JobsList from "@/components/jobs/JobsList"
 import { createClient } from '@/utils/supabase/server'
 
+export const runtime = 'edge';  // Add this line
+
 export default async function JobsPage() {
     const supabase = await createClient()
     const { data: jobs, error } = await supabase.from("jobs").select("*").order("posted_at", { ascending: false })
