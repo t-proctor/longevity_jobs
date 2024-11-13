@@ -271,7 +271,7 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
                 </div>
 
                 {totalPages > 1 && (
-                    <div className="flex justify-center items-center gap-2 mt-8">
+                    <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
                         <Button
                             variant="outline"
                             size="sm"
@@ -281,16 +281,30 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
                             <ChevronLeftIcon className="h-4 w-4" />
                         </Button>
 
-                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                            <Button
-                                key={page}
-                                variant={currentPage === page ? "default" : "outline"}
-                                size="sm"
-                                onClick={() => handlePageChange(page)}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+                        {Array.from({ length: totalPages }, (_, i) => i + 1)
+                            .filter(page => {
+                                // Always show first and last page
+                                if (page === 1 || page === totalPages) return true;
+                                // Show 2 pages before and after current page on desktop, 1 on mobile
+                                const range = window.innerWidth >= 640 ? 2 : 1;
+                                return Math.abs(currentPage - page) <= range;
+                            })
+                            .map((page, index, array) => (
+                                <>
+                                    {index > 0 && array[index - 1] !== page - 1 && (
+                                        <span className="px-2">...</span>
+                                    )}
+                                    <Button
+                                        key={page}
+                                        variant={currentPage === page ? "default" : "outline"}
+                                        size="sm"
+                                        onClick={() => handlePageChange(page)}
+                                        className="w-8 px-0"
+                                    >
+                                        {page}
+                                    </Button>
+                                </>
+                            ))}
 
                         <Button
                             variant="outline"
