@@ -241,7 +241,7 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
                             <div className="bg-teal-50 px-6 py-4 mt-auto">
                                 <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white">
                                     <a href={job.url} target="_blank" rel="noopener noreferrer" className="font-medium">
-                                        View Position
+                                        View Listing
                                     </a>
                                 </Button>
                             </div>
