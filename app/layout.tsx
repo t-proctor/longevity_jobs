@@ -18,7 +18,7 @@ export const metadata = {
   description: "Discover opportunities related to aging",
   openGraph: {
     images: [{
-      url: '/opengraph-image.png',
+      url: `${defaultUrl}/opengraph-image.png`,
       width: 1200,
       height: 630,
       type: 'image/png',
@@ -26,7 +26,7 @@ export const metadata = {
   },
   twitter: {
     images: [{
-      url: '/twitter-image.png',
+      url: `${defaultUrl}/twitter-image.png`,
       width: 430,
       height: 413,
       type: 'image/png',
