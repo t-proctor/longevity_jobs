@@ -17,10 +17,20 @@ export const metadata = {
   title: "Longevity Jobs",
   description: "Discover opportunities related to aging",
   openGraph: {
-    images: ['/opengraph-image.png'],
+    images: [{
+      url: '/opengraph-image.png',
+      width: 1200,
+      height: 630,
+      type: 'image/png',
+    }],
   },
   twitter: {
-    images: ['/twitter-image.png'],
+    images: [{
+      url: '/twitter-image.png',
+      width: 430,
+      height: 413,
+      type: 'image/png',
+    }],
   },
 };
 
