@@ -16,6 +16,12 @@ export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Longevity Jobs",
   description: "Discover opportunities related to aging",
+  openGraph: {
+    images: ['/opengraph-image.png'],
+  },
+  twitter: {
+    images: ['/twitter-image.png'],
+  },
 };
 
 export default function RootLayout({
