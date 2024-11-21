@@ -5,7 +5,7 @@ export const runtime = 'edge';  // Add this line
 
 export default async function JobsPage() {
     const supabase = await createClient()
-    const { data: jobs, error } = await supabase.from("jobs").select("*").order("posted_at", { ascending: false })
+    const { data: jobs, error } = await supabase.from("jobs").select("*").eq('active', true).order("posted_at", { ascending: false })
 
     if (error) {
         console.error("Error fetching jobs:", error.message)
