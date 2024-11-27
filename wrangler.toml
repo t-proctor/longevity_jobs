@@ -1,0 +1,11 @@
+name = "longevity-jobs"
+compatibility_date = "2023-11-21"
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "service-worker"
+
+[build.esbuild]
+platform = "node"
