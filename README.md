@@ -1,6 +1,6 @@
 # Longevity Jobs
 
-A modern job board focused on longevity and aging research positions, built with Next.js 14 and Supabase.
+A job board focused on longevity and aging positions, built with Next.js 14 and Supabase.
 
 ## Features
 
