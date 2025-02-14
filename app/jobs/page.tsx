@@ -1,5 +1,6 @@
 import JobsList from "@/components/jobs/JobsList"
 import { createClient } from '@/utils/supabase/server'
+import ErrorBoundary from "@/components/error-boundary"
 
 export const runtime = 'edge';  // Add this line
 
@@ -12,5 +13,9 @@ export default async function JobsPage() {
         return <div>Failed to load jobs.</div>
     }
 
-    return <JobsList jobs={jobs || []} />
+    return (
+        <ErrorBoundary>
+            <JobsList jobs={jobs || []} />
+        </ErrorBoundary>
+    )
 }

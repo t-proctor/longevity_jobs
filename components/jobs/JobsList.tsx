@@ -239,10 +239,8 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
                                 </div>
                             </div>
                             <div className="bg-teal-50 px-6 py-4 mt-auto">
-                                <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white">
-                                    <a href={job.url} target="_blank" rel="noopener noreferrer" className="font-medium">
-                                        View Listing
-                                    </a>
+                                <Button onClick={() => window.open(job.url, '_blank', 'noopener,noreferrer')} className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium">
+                                    View Listing
                                 </Button>
                             </div>
                         </CardContent>
