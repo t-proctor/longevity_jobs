@@ -58,11 +58,6 @@ const JobsList: React.FC<JobsListProps> = ({ jobs }) => {
     const jobsPerPage = columnsPerRow * rowsPerPage
     const [searchQuery, setSearchQuery] = useState("")
 
-    // Debugging: Log state changes
-    useEffect(() => {
-        console.log('Selected Locations:', selectedLocations)
-        console.log('Selected Categories:', selectedCategories)
-    }, [selectedLocations, selectedCategories])
 
     // Get unique locations for the filter dropdown
     const locations = useMemo(() => {
